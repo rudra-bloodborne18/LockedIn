@@ -1,1 +1,1 @@
-console.log("Starting server...");
+console.log('Server is running...');
