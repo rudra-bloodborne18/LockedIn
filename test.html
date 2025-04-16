@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Firebase Google Login</title>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
+  </head>
+  <body>
+    <h1>Login with Google</h1>
+    <button onclick="signIn()">Sign in with Google</button>
+
+    <script>
+      // TODO: Replace this with your Firebase config
+      const firebaseConfig = {
+        apiKey: "AIzaSyB4rZJe6puFlkGAKduMkUh7eW-L-a56Qk8",
+        authDomain: "lockedin-1fc3e.firebaseapp.com",
+        projectId: "lockedin-1fc3e",
+        storageBucket: "lockedin-1fc3e.firebasestorage.app",
+        messagingSenderId: "547151586692",
+        appId: "1:547151586692:web:cc6bbeab0031b0127fe9d1",
+        measurementId: "G-DJDLQVRYR4",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      function signIn() {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase
+          .auth()
+          .signInWithPopup(provider)
+          .then((result) => {
+            return result.user.getIdToken();
+          })
+          .then((idToken) => {
+            console.log("Your Firebase ID Token:", idToken);
+            alert("Token copied to console!");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    </script>
+  </body>
+</html>
